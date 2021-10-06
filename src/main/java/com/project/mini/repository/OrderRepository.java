@@ -14,6 +14,6 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
     @Query("SELECT o from Order o WHERE o.registrationId = ?1")
     Order getOrderByRegistrationId(UUID uuid);
 
-    @Query("select o from Order o WHERE o.customerName %?1%")
+    @Query("select o from Order o WHERE o.customerName LIKE %?1%")
     List<Order> getAllOrderByCustomerName(String customerName);
 }
