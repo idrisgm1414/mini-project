@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "order")
+@Table(name = "order_item")
 public class Order {
 
     @Id
@@ -15,7 +15,7 @@ public class Order {
 
     // registrasi id
     @Column(name = "registration_id")
-    private UUID registrationId;
+    private String registrationId;
 
     // nama barang
     @Column(name = "item_name")
@@ -49,11 +49,11 @@ public class Order {
         this.id = id;
     }
 
-    public UUID getRegistrationId() {
+    public String getRegistrationId() {
         return registrationId;
     }
 
-    public void setRegistrationId(UUID registrationId) {
+    public void setRegistrationId(String registrationId) {
         this.registrationId = registrationId;
     }
 

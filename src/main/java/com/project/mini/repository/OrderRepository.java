@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, UUID> {
+public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    @Query("SELECT o from Order o WHERE o.registrationId = ?1")
-    Order getOrderByRegistrationId(UUID uuid);
+    @Query("SELECT o from Order o WHERE o.registrationId like ?1")
+    Order getOrderByRegistrationId(String uuid);
 
-    @Query("select o from Order o WHERE o.customerName LIKE %?1%")
+    @Query("select o from Order o WHERE o.customerName like %?1%")
     List<Order> getAllOrderByCustomerName(String customerName);
 }

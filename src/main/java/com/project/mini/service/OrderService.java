@@ -8,7 +8,7 @@ public interface OrderService {
 
     OrderWrapper createOrder(OrderWrapper orderWrapper);
 
-    OrderWrapper changeQuantityByRegisterId(String registerId, Integer quantity);
+    OrderWrapper changeQuantityByRegisterId(OrderWrapper orderWrapper);
 
-    public List<OrderWrapper> getAllByCustomerName(String customerName);
+    public List<OrderWrapper> getAllByCustomerName(OrderWrapper orderWrapper);
 }

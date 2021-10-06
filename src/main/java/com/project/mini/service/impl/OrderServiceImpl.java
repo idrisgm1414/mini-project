@@ -22,28 +22,31 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public OrderWrapper createOrder(OrderWrapper orderWrapper) {
-        orderWrapper.setRegistrationId(UUID.randomUUID());
+        orderWrapper.setRegistrationId(UUID.randomUUID().toString());
         orderWrapper.setOrderDate(new Date());
         return entityToWrapper(orderRepository.save(wrapperToEntity(orderWrapper))) ;
     }
 
     @Override
     @Transactional
-    public OrderWrapper changeQuantityByRegisterId(String registerId, Integer quantity) {
-        Order order = orderRepository.getOrderByRegistrationId(UUID.fromString(registerId));
-        order.setQuantity(quantity);
+    public OrderWrapper changeQuantityByRegisterId(OrderWrapper orderWrapper) {
+        Order order = orderRepository.getOrderByRegistrationId(orderWrapper.getRegistrationId());
+        System.out.println("INI ORDER REGISTER ID == " + orderWrapper.getRegistrationId());
+        System.out.println("INI ORDER QUANTITY ID == " + orderWrapper.getQuantity());
+
+        order.setQuantity(orderWrapper.getQuantity());
         return entityToWrapper(orderRepository.save(order));
     }
 
     @Override
     @Transactional
-    public List<OrderWrapper> getAllByCustomerName(String customerName) {
-        List<Order> orders = orderRepository.getAllOrderByCustomerName(customerName);
-        List<OrderWrapper> orderWrapper = new ArrayList<>();
+    public List<OrderWrapper> getAllByCustomerName(OrderWrapper orderWrapper) {
+        List<Order> orders = orderRepository.getAllOrderByCustomerName(orderWrapper.getCustomerName());
+        List<OrderWrapper> orderWrapperResult = new ArrayList<>();
         for (Order order: orders) {
-            orderWrapper.add(entityToWrapper(order));
+            orderWrapperResult.add(entityToWrapper(order));
         }
-        return orderWrapper;
+        return orderWrapperResult;
     }
 
     Order wrapperToEntity(OrderWrapper orderWrapper) {

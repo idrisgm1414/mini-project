@@ -6,7 +6,7 @@ import java.util.UUID;
 public class OrderWrapper {
 
     // registrasi id
-    private UUID registrationId;
+    private String registrationId;
 
     // nama barang
     private String itemName;
@@ -26,11 +26,11 @@ public class OrderWrapper {
     // tanggal pemesanan
     private Date orderDate;
 
-    public UUID getRegistrationId() {
+    public String getRegistrationId() {
         return registrationId;
     }
 
-    public void setRegistrationId(UUID registrationId) {
+    public void setRegistrationId(String registrationId) {
         this.registrationId = registrationId;
     }
 
